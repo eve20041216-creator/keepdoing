@@ -26,7 +26,7 @@ export const PomodoroPage: React.FC = () => {
       setDailyStats(daily.data);
       setWeeklyStats(weekly.data);
     } catch (error) {
-      console.error('Error loading stats:', error);
+      console.error('加载统计数据出错:', error);
     }
   };
 
@@ -40,27 +40,27 @@ export const PomodoroPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* 标题 */}
       <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold">🍅 Pomodoro Timer</h1>
-        <p className="text-red-100 mt-2">Stay focused and take regular breaks</p>
+        <h1 className="text-4xl font-bold">🍅 番茄工作法</h1>
+        <p className="text-red-100 mt-2">专注工作，定期休息</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Timer */}
+        {/* 计时器 */}
         <div className="lg:col-span-1">
           <PomodoroTimer />
         </div>
 
-        {/* Settings */}
+        {/* 设置 */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Customize Timer */}
+          {/* 自定义时长 */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Customize Durations</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">自定义时长</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Focus Duration (min)
+                  专注时间（分钟）
                 </label>
                 <input
                   type="number"
@@ -72,7 +72,7 @@ export const PomodoroPage: React.FC = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Short Break (min)
+                  短休息（分钟）
                 </label>
                 <input
                   type="number"
@@ -84,7 +84,7 @@ export const PomodoroPage: React.FC = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Long Break (min)
+                  长休息（分钟）
                 </label>
                 <input
                   type="number"
@@ -99,36 +99,36 @@ export const PomodoroPage: React.FC = () => {
               onClick={handleSaveSettings}
               className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
             >
-              Save Settings
+              保存设置
             </button>
           </div>
 
-          {/* Stats */}
+          {/* 统计信息 */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Today's Statistics</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">今日统计</h2>
             {dailyStats ? (
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Sessions</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">完成次数</p>
                   <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                     {dailyStats.completed_sessions || 0}
                   </p>
                 </div>
                 <div className="bg-green-50 dark:bg-green-900 p-4 rounded">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Total Time</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">总时长</p>
                   <p className="text-3xl font-bold text-green-600 dark:text-green-400">
-                    {Math.round((dailyStats.total_minutes || 0) / 60)}h
+                    {Math.round((dailyStats.total_minutes || 0) / 60)}小时
                   </p>
                 </div>
                 <div className="bg-purple-50 dark:bg-purple-900 p-4 rounded">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Focus Time</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">专注时间</p>
                   <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">
-                    {dailyStats.total_minutes || 0}m
+                    {dailyStats.total_minutes || 0}分
                   </p>
                 </div>
               </div>
             ) : (
-              <p className="text-gray-500 dark:text-gray-400">No data available</p>
+              <p className="text-gray-500 dark:text-gray-400">暂无数据</p>
             )}
           </div>
         </div>
